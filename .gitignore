@@ -2,3 +2,7 @@
 agent_workspace/
 __pycache__/
 *.pyc
+config.json
+gemini_config.json
+gemini_config_10keys.json
+.env

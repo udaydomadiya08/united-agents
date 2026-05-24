@@ -4,7 +4,7 @@
 ; ---------------------------------------------------------
 ; FILE SYSTEM SECURITY
 ; ---------------------------------------------------------
-; Allow reading everything (so agent can answer questions about code)
+; Allow reading everything globally
 (allow file-read*)
 
 ; Prevent writing ANYWHERE on the system by default
@@ -17,7 +17,9 @@
 (allow file-write* (subpath "/private/tmp"))
 (allow file-write* (subpath "/private/var/tmp"))
 (allow file-write* (subpath "/dev"))
-
+(allow file-write* (subpath "/Users/uday/.hermes")) ; Required for Hermes sqlite/logs
+(allow file-write* (subpath "/Users/uday/.openclaw")) ; Required for Openclaw sqlite/logs
+(allow file-write* (subpath "/Users/uday/.nanobot")) ; Required for Nanobot
 
 ; ---------------------------------------------------------
 ; NETWORK EXFILTRATION SECURITY
@@ -27,6 +29,7 @@
 
 ; Allow connections strictly to the local proxy
 (allow network-outbound (remote tcp "localhost:8081"))
+(allow network-outbound (remote tcp "127.0.0.1:8081"))
 
 ; Allow DNS and system sockets (required for basic execution)
 (allow network-outbound (remote udp "*:53"))
