@@ -15,19 +15,39 @@ Say goodbye to heavy 8GB Docker sandboxes. This orchestrator runs entirely nativ
 - Python 3.9+
 - NVIDIA NIM API Key (`NVIDIA_API_KEY`)
 
-### Quick Setup
-
-1. Clone the repository.
-2. Install the lightweight dependencies:
+### 🍎 macOS Setup (Native Seatbelt Sandbox)
+1. Clone the repository: `git clone https://github.com/udaydomadiya08/united-agents.git && cd united-agents`
+2. Install Python dependencies: `pip install -r requirements.txt`
+3. Run the agent setup script (installs OpenClaw and local agent binaries):
    ```bash
-   ./setup_agents.sh
+   chmod +x setup_agents.sh && ./setup_agents.sh
    ```
-3. Set up your `.env` file:
-   ```env
-   NVIDIA_API_KEY="your-api-key"
-   NVIDIA_BASE_URL="https://integrate.api.nvidia.com/v1"
-   NVIDIA_MODEL="meta/llama-3.1-70b-instruct"
+4. Copy `.env.example` to `.env` and insert your API keys.
+
+### 🐧 Linux Setup (Bubblewrap Sandbox)
+1. Install Bubblewrap for kernel-level sandboxing:
+   - Ubuntu/Debian: `sudo apt-get install bubblewrap`
+   - Arch Linux: `sudo pacman -S bubblewrap`
+   - Fedora: `sudo dnf install bubblewrap`
+2. Clone the repository: `git clone https://github.com/udaydomadiya08/united-agents.git && cd united-agents`
+3. Install Python dependencies: `pip install -r requirements.txt`
+4. Run the setup script:
+   ```bash
+   chmod +x setup_agents.sh && ./setup_agents.sh
    ```
+5. Copy `.env.example` to `.env` and insert your API keys.
+
+### 🪟 Windows Setup
+*Note: Strict file-write sandboxing requires Windows Subsystem for Linux (WSL). Running directly in PowerShell will default to Unsafe mode, but the Network Exfiltration Proxy will still protect you.*
+
+**Option 1: Using WSL (Recommended for full security)**
+- Open your WSL terminal and follow the **Linux Setup** instructions above.
+
+**Option 2: Native Windows (PowerShell/CMD)**
+1. Clone the repository and navigate into it.
+2. Install Python dependencies: `pip install -r requirements.txt`
+3. Install OpenClaw globally (requires Node.js): `npm install -g openclaw`
+4. Copy `.env.example` to `.env` and insert your API keys.
 
 ## Usage
 
