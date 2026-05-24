@@ -1,0 +1,18 @@
+{
+    "zeroclaw": {
+        "command": ["/Users/uday/.local/bin/zeroclaw", "run", "--task"],
+        "description": "Ultra-lightweight Rust binary. Best for fast, simple shell interactions, quick queries, and minimal latency."
+    },
+    "openclaw": {
+        "command": ["openclaw", "agent", "--local", "-m"],
+        "description": "Node.js based full agent. Best for complex, multi-step integrations and heavy data tasks."
+    },
+    "hermes": {
+        "command": ["/Users/uday/.local/bin/hermes-agent", "--prompt"],
+        "description": "Python based agent. Best for python-heavy data science tasks, reasoning, and local file operations."
+    },
+    "nanobot": {
+        "command": ["/Users/uday/.local/bin/nanobot"],
+        "description": "Micro agent. Best for extremely tiny, single-action background tasks or micro-optimizations."
+    }
+}

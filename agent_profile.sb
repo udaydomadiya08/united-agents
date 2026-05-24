@@ -1,0 +1,34 @@
+(version 1)
+(allow default)
+
+; ---------------------------------------------------------
+; FILE SYSTEM SECURITY
+; ---------------------------------------------------------
+; Allow reading everything (so agent can answer questions about code)
+(allow file-read*)
+
+; Prevent writing ANYWHERE on the system by default
+(deny file-write*)
+
+; ALLOW writing ONLY to the provided WORKSPACE directory
+(allow file-write* (subpath (param "WORKSPACE")))
+
+; Allow writing to safe system temp and dev devices (required for Python/Node)
+(allow file-write* (subpath "/private/tmp"))
+(allow file-write* (subpath "/private/var/tmp"))
+(allow file-write* (subpath "/dev"))
+
+
+; ---------------------------------------------------------
+; NETWORK EXFILTRATION SECURITY
+; ---------------------------------------------------------
+; Deny all outbound network
+(deny network-outbound)
+
+; Allow connections strictly to the local proxy
+(allow network-outbound (remote tcp "localhost:8081"))
+
+; Allow DNS and system sockets (required for basic execution)
+(allow network-outbound (remote udp "*:53"))
+(allow network-outbound (remote tcp "*:53"))
+(allow network-outbound (literal "/private/var/run/mDNSResponder"))
